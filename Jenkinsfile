@@ -26,14 +26,14 @@ pipeline {
         stage('Deploy to Docker Host') {
           steps {
             sh    'docker -H tcp://10.1.1.200:2375 stop featurewebapp2 || true'
-            sh    'docker -H tcp://10.1.1.200:2375 run --rm -dit --name featurewebapp2 --hostname featurewebapp2 -p 8000:80 sreeharshav/featurewebapp2:${BUILD_NUMBER}'
+            sh    'docker -H tcp://10.1.1.200:2375 run --rm -dit --name featurewebapp2 --hostname featurewebapp2 -p 10000:80 sreeharshav/featurewebapp2:${BUILD_NUMBER}'
             }
         }
 
         stage('Check WebApp Rechability') {
           steps {
           sh 'sleep 10s'
-          sh ' curl http://10.1.1.200:8000'
+          sh ' curl http://10.1.1.200:10000'
           }
         }
 
