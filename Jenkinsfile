@@ -13,20 +13,20 @@ pipeline {
           steps {
             sh 'cd /var/lib/jenkins/workspace/pipeline2/dockertest1'
             sh 'cp  /var/lib/jenkins/workspace/pipeline2/dockertest1/* /var/lib/jenkins/workspace/pipeline2'
-            sh 'docker build -t sreeharshav/pipelinetestprod:${BUILD_NUMBER} .'
+            sh 'docker build -t sreeharshav/featurewebapp1:${BUILD_NUMBER} .'
             }
         }
 
         stage('Push Image to Docker Hub') {
           steps {
-           sh    'docker push sreeharshav/pipelinetestprod:${BUILD_NUMBER}'
+           sh    'docker push sreeharshav/featurewebapp1:${BUILD_NUMBER}'
            }
         }
 
         stage('Deploy to Docker Host') {
           steps {
-            sh    'docker -H tcp://10.1.1.200:2375 stop c || true'
-            sh    'docker -H tcp://10.1.1.200:2375 run --rm -dit --name featurewebapp1 --hostname featurewebapp1 -p 8000:80 sreeharshav/pipelinetestprod:${BUILD_NUMBER}'
+            sh    'docker -H tcp://10.1.1.200:2375 stop featurewebapp1 || true'
+            sh    'docker -H tcp://10.1.1.200:2375 run --rm -dit --name featurewebapp1 --hostname featurewebapp1 -p 9000:80 sreeharshav/featurewebapp1:${BUILD_NUMBER}'
             }
         }
 
