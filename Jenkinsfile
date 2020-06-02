@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        docker_host = "10.1.1.225"
+        docker_host = "54.242.27.58"
     }   
     stages {
 
