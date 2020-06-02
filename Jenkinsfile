@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         docker_host = "10.1.1.225"
+    }   
     stages {
 
         stage('Cloning Github Repo') {
