@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        docker_host = " "
+        docker_host = "10.1.1.225"
     stages {
 
         stage('Clone Repo') {
