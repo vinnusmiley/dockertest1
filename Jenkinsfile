@@ -4,7 +4,7 @@ pipeline {
         docker_host = "10.1.1.225"
     stages {
 
-        stage('Clone Repo') {
+        stage('Cloning Github Repo') {
           steps {
             sh 'rm -rf dockertest1'
             sh 'git clone https://github.com/vinnusmiley/dockertest1.git'
@@ -13,6 +13,8 @@ pipeline {
 
         stage('Build Docker Image') {
           steps {
+            sh 'cd /var/lib/jenkins/workspace/pipeline2/dockertest1'
+            sh 'cp /var/lib/jenkins/workspace/pipeline2/dockertest1/* /var/lib/jenkins/workspace/pipeline2'
             sh 'docker build -t vinnuvikki/pipelinetestprod:${BUILD_NUMBER} .'
             }
         }
